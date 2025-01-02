@@ -40,7 +40,7 @@
                                     {{ __('Outlet') }}
                                 </x-dropdown-link>
 
-                                <x-dropdown-link :href="route('dashboard')">
+                                <x-dropdown-link :href="route('paket.index')">
                                     {{ __('Paket') }}
                                 </x-dropdown-link>
 
