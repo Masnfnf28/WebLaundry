@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Outlet;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
-class OutletController extends Controller
+class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $outlet = Outlet::paginate(5);
-        return view('page.outlet.index')->with([
-            'data' => $outlet,
+        $member = Member::paginate(5);
+        return view('page.member.index')->with([
+            'data' => $member,
         ]);
     }
 
@@ -33,12 +33,13 @@ class OutletController extends Controller
     {
         $data = [
             'nama' => $request->input('nama'),
-            'alamat' => $request->input('alamat')
+            'alamat' => $request->input('alamat'),
+            'jenis_kelamin' => $request->input('jenis_kelamin')
         ];
 
-        Outlet::create($data);
+        Member::create($data);
 
-        return back()->with('message_delete', 'Data Outlet Sudah ditambahkan');
+        return back()->with('message_delete', 'Data Member Sudah ditambahkan');
     }
 
     /**
@@ -46,7 +47,7 @@ class OutletController extends Controller
      */
     public function show(string $id)
     {
-        
+        //
     }
 
     /**
@@ -64,34 +65,22 @@ class OutletController extends Controller
     {
         $data = [
             'nama' => $request->input('nama'),
-            'alamat' => $request->input('alamat')
+            'alamat' => $request->input('alamat'),
+            'jenis_kelamin' => $request->input('jenis_kelamin')
         ];
 
-        $datas = Outlet::findOrFail($id);
+        $datas = Member::findOrFail($id);
         $datas->update($data);
-        return back()->with('message_delete', 'Data Outlet Sudah dihapus');
-    }
+        return back()->with('message_delete', 'Data Member Sudah diupdate')
+;    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        $data = Outlet::findOrFail($id);
+        $data = Member::findOrFail($id);
         $data->delete();
-        return back()->with('message_delete','Data Konsumen Sudah dihapus');
+        return back()->with('message_delete','Data Member Sudah dihapus');
     }
-
-    // public function destroy(string $id)
-    // {
-    //     try {
-    //         $data = Outlet::findOrFail($id);
-    //         $data->delete();
-
-    //         return back()->with('message_delete', 'Data Outlet Sudah dihapus');
-    //     } catch (\Exception $e) {
-    //         // Handle exception
-    //         return back()->with('error', 'Terjadi kesalahan saat menghapus data: ' . $e->getMessage());
-    //     }
-    // }
 }

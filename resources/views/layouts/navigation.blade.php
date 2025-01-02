@@ -44,7 +44,7 @@
                                     {{ __('Paket') }}
                                 </x-dropdown-link>
 
-                                <x-dropdown-link :href="route('dashboard')">
+                                <x-dropdown-link :href="route('member.index')">
                                     {{ __('Member') }}
                                 </x-dropdown-link>
                             </x-slot>
